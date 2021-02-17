@@ -1,10 +1,17 @@
-import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
-music_data= pd.read_csv('music.csv')
 
-x= music_data.drop(columns=['genre'])
-y=music_data['genre']
-model=DecisionTreeClassifier()
-model.fit(x,y)
-pred=model.predict([[21,1],[22,0]])
-print(pred)
+
+import joblib
+import CreateModel
+#create the model to privent the time of train and test every time run program
+
+input=input("Enter 1 to test\nEnter 1 to run module\nExit zero\n")
+
+if int(input)==1:
+    model=joblib.load('music-recommender.joblib')
+    predictionEx=model.predict([[21,1],[22,0]])
+    print( predictionEx)
+
+else:
+    CreateModel.createModel()
+
+
